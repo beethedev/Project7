@@ -26,12 +26,12 @@ class DetailViewController: UIViewController {
             <html>
             <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style> body { font-size: 150%; } </style>
+            <style> body { font-size: 140%; font-family:futura} </style>
             </head>
             <body>
-            <p><b>\(detailItem.title)</b></p>
-            <p><b>Number of signatures : </b>\(detailItem.signatureCount)</p>
-            <p>\(detailItem.body)</p>
+            <p>\(detailItem.title)</p>
+            <p>Number of signatures : \(detailItem.signatureCount)</p>
+            <p style="font-family:'Mukta Mahee'">\(detailItem.body)</p>
             </body>
             </html>
             """
