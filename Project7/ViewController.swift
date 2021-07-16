@@ -14,6 +14,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "The White House petitions"
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(creditsTapped))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPetitions))
@@ -31,6 +33,9 @@ class ViewController: UITableViewController {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
                 filteredResults = petitions
+                filteredResults.sort{
+                    $1.signatureCount < $0.signatureCount
+                }
                 tableView.reloadData()
                 return
             }
@@ -69,11 +74,15 @@ class ViewController: UITableViewController {
                 filteredResults.insert(petition, at: 0)
             }
         }
+        filteredResults.sort{
+            $1.signatureCount < $0.signatureCount
+        }
         if filteredResults.isEmpty {
             show404()
             filteredResults = petitions
             tableView.reloadData()
         }
+        
         tableView.reloadData()
     }
     
